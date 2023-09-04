@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import contactsReducer from './contacts/contactsSlice';
 import filterReducer from './filterSlice';
 
-const customLogger = store => {
+/* const customLogger = store => {
   return next => {
     return action => {
       console.group('action ', action.type);
@@ -16,23 +16,23 @@ const customLogger = store => {
       console.groupEnd();
     };
   };
-};
+}; */
 
 // міделвар
-const thunk = store => next => action => {
+/* const thunk = store => next => action => {
   if (typeof action === 'function') {
     action(store.dispatch, store.getState);
     return;
   }
   next(action);
-};
+}; */
 
 export const store = configureStore({
   reducer: {
     contacts: contactsReducer,
     filter: filterReducer,
   },
-  middleware: getDefaultMiddleware => [...getDefaultMiddleware(), customLogger],
+  middleware: getDefaultMiddleware => [...getDefaultMiddleware()],
 });
 
 // createAsyncThunk - @reduxjs/toolkit, rejectWithValue, extraReducers:

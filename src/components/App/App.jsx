@@ -1,20 +1,39 @@
-import ContactsBookPage from "components/pages/ContactsBookPage";
+//import ContactsBookPage from "components/pages/ContactsBookPage";
+import {  Route, Routes , Navigate} from "react-router-dom";
+
+import MainLayout from "components/MainLayout/MainLayout";
+import HomePage from "components/pages/HomePage";
+import LoginPage from "components/pages/LoginPage";
+import RegisterPage from "components/pages/RegisterPage";
+import ContactsBookpage from "components/pages/ContactsBookPage";
 
 
 const App = () => {
  
   return (
+    <>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+           <Route index element={<HomePage />} />
+        <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+        <Route path="/contacts" element={<ContactsBookpage/>} />
+          
+        <Route path="*" element={<Navigate to="/login" />} />
+       </Route>  
+      </Routes>
+    </>
+  )
 
-    
-      <ContactsBookPage />
-   
-    
-  
-  );
-  
 };
     
 export default App;
   
-  // Використовуємо useSelector для перевірки наявності контактів у стані Boolean trau false
-  //const isContactsExist = useSelector((state) => Boolean(state.contacts.length)); 
+  //  <ContactsBookPage />
+
+  //created rootes
+
+       
+        
+
+     

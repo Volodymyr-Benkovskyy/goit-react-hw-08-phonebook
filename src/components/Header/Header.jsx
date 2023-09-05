@@ -1,7 +1,8 @@
  
 import { Navigation } from "components/Navigation/Navigation";
 import css from "./header.module.css"
-import AuthNav from "components/AuthNav/AuthNav";
+
+import AuthNavList from "components/AuthNavList/AuthNavList";
 
 
 const Header = () => {
@@ -9,9 +10,8 @@ const Header = () => {
 
   return (
     <header className={css.header}>
-      <Navigation />
-     
-      <AuthNav />
+      <Navigation /> 
+      <AuthNavList />
     </header> 
   )
 };

@@ -3,7 +3,7 @@
 import s from './ContactForm.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
-import { getStoreContacts } from 'components/redux/selectors';
+import { getStoreContacts } from 'components/redux/contacts/selectors';
 import { addContactApi } from 'components/redux/contacts/contactsOperation';
 
 

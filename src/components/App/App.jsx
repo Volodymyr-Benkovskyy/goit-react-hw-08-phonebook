@@ -5,7 +5,7 @@ import MainLayout from "components/MainLayout/MainLayout";
 import HomePage from "components/pages/HomePage";
 import LoginPage from "components/pages/LoginPage";
 import RegisterPage from "components/pages/RegisterPage";
-import ContactsBookpage from "components/pages/ContactsBookPage";
+import ContactsBookPage from "components/pages/ContactsBookPage";
 
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
            <Route index element={<HomePage />} />
         <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-        <Route path="/contacts" element={<ContactsBookpage/>} />
+        <Route path="/contacts" element={<ContactsBookPage/>} />
           
         <Route path="*" element={<Navigate to="/login" />} />
        </Route>  
@@ -31,7 +31,7 @@ export default App;
   
   //  <ContactsBookPage />
 
-  //created rootes
+  
 
        
         

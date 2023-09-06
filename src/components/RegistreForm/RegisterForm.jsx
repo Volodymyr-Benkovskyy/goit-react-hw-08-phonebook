@@ -1,10 +1,14 @@
 
 import { useState } from 'react';
 import css from './RegisterForm.module.css';
-import { registerUserApi } from 'components/redux/firebaseApi';
+
+import { registerUser } from 'components/redux/auth/authOperation';
+import { useDispatch } from 'react-redux';
 
 const RegisterForm = () => {
-   
+
+  const dispatch = useDispatch();
+  
    const [form, setForm] = useState({
      email: "",
      password: "",
@@ -19,7 +23,8 @@ const RegisterForm = () => {
    const handleSubmit = (event) => {
      event.preventDefault();
      console.log("fech==>", form);
-     registerUserApi(form)
+     dispatch(registerUser(form))
+     
        .then(console.log)
      
    };

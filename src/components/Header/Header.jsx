@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <header className={css.header}>
       <Navigation /> 
-      <AuthNavList />
+      <AuthNavList />  
     </header> 
   )
 };

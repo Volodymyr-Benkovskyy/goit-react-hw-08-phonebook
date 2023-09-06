@@ -1,43 +1,41 @@
 
 import { useState } from 'react';
 import css from './RegisterForm.module.css';
+import { registerUserApi } from 'components/redux/firebaseApi';
 
- const RegisterForm = () => {
+const RegisterForm = () => {
+   
    const [form, setForm] = useState({
      email: "",
      password: "",
    });
 
    const handleChange = (event) => {
-     const { name, value } = event.target
+     const { name, value } = event.target;
      setForm((prev) => ({ ...prev, [name]: value }))
+    
    };
 
    const handleSubmit = (event) => {
-     event.preventDefault()
+     event.preventDefault();
+     console.log("fech==>", form);
+     registerUserApi(form)
+       .then(console.log)
      
    };
+   
 
    
   return (
-    <form onSubmit={handleSubmit} className={css.form}  autoComplete="off">
-      <label className={css.label}>
-        Username
-        <input
-          type="text"
-          name="name"
-          value={form.name}
-          onchange={handleChange}
-        />
-         
-      </label>
+    <form onSubmit={handleSubmit} className={css.form} >
+    
       <label className={css.label}>
         Email
         <input
           type="email"
           name="email"
           value={form.email}
-          onchange={handleChange}
+          onChange={handleChange}
         />
       </label>
       <label className={css.label}>
@@ -46,7 +44,7 @@ import css from './RegisterForm.module.css';
           type="password"
           name="password"
           value={form.password}
-         onchange={handleChange}
+          onChange={handleChange}
         />
       </label>
       <button type="submit">Register</button>
@@ -56,4 +54,4 @@ import css from './RegisterForm.module.css';
 
 export default RegisterForm;
 
-//   handleChange  handleSubmit
+// creating a request method axois.post  the server firebase

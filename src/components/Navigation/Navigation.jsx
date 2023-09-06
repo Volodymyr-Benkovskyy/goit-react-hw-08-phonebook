@@ -7,14 +7,16 @@ export const Navigation = () => {
 
   return (
     <nav>
-      <NavLink className={css.link} to="/">
+       <NavLink className={css.link} to="/">
         Home
-      </NavLink>
+      </NavLink> 
       
-         <NavLink className={css.link} to="/contacts">
+     {/*  <NavLink className={css.link} to="/contacts">
           Contacts
-        </NavLink> 
-      
+        </NavLink>  */}
+    
     </nav>
   );
 };
+
+export default Navigation;

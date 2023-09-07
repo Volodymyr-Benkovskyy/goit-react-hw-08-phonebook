@@ -6,27 +6,25 @@ import HomePage from "components/pages/HomePage";
 import LoginPage from "components/pages/LoginPage";
 import RegisterPage from "components/pages/RegisterPage";
 import ContactsBookPage from "components/pages/ContactsBookPage";
-import { useSelector } from "react-redux";
-import { selectIsAuth } from "components/redux/auth/authselector";
+//import { useSelector } from "react-redux";
+//import { selectIsAuth } from "components/redux/auth/authselector";
 
 
 const App = () => {
-  const isAuth = useSelector(selectIsAuth);
+ // const isAuth = useSelector(selectIsAuth);
 
   return (
     <>
-      
-      {isAuth ? (
-         <ContactsBookPage/>
-      ) :
-        (<Routes>
-          <Route path="/" element={<MainLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path="/register" element={<RegisterPage />} />
-              <Route path="/login" element={<LoginPage />} />
-             <Route path="*" element={<Navigate to="/login" />} /> 
-          </Route>
-        </Routes>)}
+    
+   <Routes>  
+    <Route path="/" element={<MainLayout />}>
+    <Route index element={<HomePage />} />
+    <Route path="/contacts" element={<ContactsBookPage/> }/>
+    <Route path="/register" element={<RegisterPage />} />
+    <Route path="/login" element={<LoginPage />} />
+    </Route>
+   <Route path="*" element={<Navigate to="/login" />} /> 
+ </Routes>
     
     </>
   );

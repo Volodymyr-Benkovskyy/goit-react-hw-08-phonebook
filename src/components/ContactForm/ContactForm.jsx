@@ -4,7 +4,7 @@ import s from './ContactForm.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { getStoreContacts } from 'components/redux/contacts/selectors';
-import { addContactApi } from 'components/redux/contacts/contactsOperation';
+import {  addContacts } from 'components/redux/contacts/contactsOperation';
 
 
 const ContactForm = () => {
@@ -33,7 +33,7 @@ const ContactForm = () => {
        
     };  
     
-    dispatch(addContactApi(newContact))
+    dispatch(addContacts(newContact))
    
    };
    form.reset();

@@ -1,9 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  addContactApi,
-  deleteContactsApi,
-  getContactsApi,
-} from './contactsOperation';
+import { addContacts, getContacts, removeContacts } from './contactsOperation';
 
 const ContactsSlice = createSlice({
   name: 'contacts',
@@ -15,13 +11,13 @@ const ContactsSlice = createSlice({
 
   extraReducers: builder => {
     builder
-      .addCase(addContactApi.fulfilled, (state, { payload }) => {
+      .addCase(addContacts.fulfilled, (state, { payload }) => {
         state.items.push(payload);
       })
-      .addCase(getContactsApi.fulfilled, (state, { payload }) => {
+      .addCase(getContacts.fulfilled, (state, { payload }) => {
         state.items = payload;
       })
-      .addCase(deleteContactsApi.fulfilled, (state, { payload }) => {
+      .addCase(removeContacts.fulfilled, (state, { payload }) => {
         state.items = state.items.filter(el => el.id !== payload);
       })
 

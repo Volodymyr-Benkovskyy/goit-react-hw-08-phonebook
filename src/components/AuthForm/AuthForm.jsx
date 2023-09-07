@@ -22,8 +22,6 @@ const AuthForm = ({onSubmit,submitTitle}) => {
     
     };
     
-
-
      return (
     <form onSubmit={handleSubmit} className={css.form} >
     

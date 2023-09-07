@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import css from './Navigation.module.css';
 
 export const Navigation = () => {
-  //const { isLoggedIn } = useAuth();
+//const { isLoggedIn } = useAuth();
 
   return (
     <nav>
@@ -11,10 +11,10 @@ export const Navigation = () => {
         Home
       </NavLink> 
       
-     {/*  <NavLink className={css.link} to="/contacts">
+   {/*    <NavLink className={css.link} to="/contacts">
           Contacts
-        </NavLink>  */}
-    
+        </NavLink>  
+     */}
     </nav>
   );
 };

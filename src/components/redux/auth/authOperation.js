@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { registerUserApi } from '../firebaseApi';
+import { loginUserApi, registerUserApi } from '../firebaseApi';
 
 export const registerUser = createAsyncThunk(
   'auth/register',
@@ -9,6 +9,18 @@ export const registerUser = createAsyncThunk(
       return userData;
     } catch (error) {
       return rejectWithValue(error.massege);
+    }
+  }
+);
+
+export const loginUser = createAsyncThunk(
+  'auth/login',
+  async (userForm, { rejectWithValue }) => {
+    try {
+      const userData = await loginUserApi(userForm);
+      return userData;
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
   }
 );

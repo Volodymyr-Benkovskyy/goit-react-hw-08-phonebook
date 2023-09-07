@@ -16,7 +16,9 @@ const App = () => {
   return (
     <>
       
-      {isAuth ? (<ContactsBookPage />) :
+      {isAuth ? (
+         <ContactsBookPage/>
+      ) :
         (<Routes>
           <Route path="/" element={<MainLayout />}>
             <Route index element={<HomePage />} />

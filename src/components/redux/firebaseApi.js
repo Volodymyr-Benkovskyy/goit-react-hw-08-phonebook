@@ -33,7 +33,38 @@ export const registerUserApi = userForm => {
       localId,
     }));
 };
+export const loginUserApi = userForm => {
+  setBaseUrl(baseUrl.AUTH);
+  return axios
+    .post(
+      '/accounts:signInWithPassword',
+      {
+        ...userForm,
+        returnSecureToken: true,
+      },
+      {
+        params: {
+          key: API_KEY,
+        },
+      }
+    )
+    .then(({ data: { localId, email, idToken, refreshToken } }) => ({
+      localId,
+      email,
+      idToken,
+      refreshToken,
+    }));
+};
 
+/* {
+  "localId": "ZY1rJK0eYLg...",
+  "email": "[user@example.com]",
+  "displayName": "",
+  "idToken": "[ID_TOKEN]",
+  "registered": true,
+  "refreshToken": "[REFRESH_TOKEN]",
+  "expiresIn": "3600"
+} */
 //'{"email":"[user@example.com]","password":"[PASSWORD]","returnSecureToken":true}'
 
 // https://volodymyr-1-default-rtdb.firebaseio.com

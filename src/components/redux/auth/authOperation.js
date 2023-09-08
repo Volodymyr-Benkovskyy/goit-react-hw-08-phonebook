@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getCurUserApi, loginUserApi, registerUserApi } from './firebaseUseApi';
+import { logOut } from './authSlice';
 
 export const registerUser = createAsyncThunk(
   'auth/register',
@@ -27,12 +28,15 @@ export const loginUser = createAsyncThunk(
 
 export const getCurUser = createAsyncThunk(
   'auth/get/Cur/users',
-  async (_, { getState, rejectWithValue }) => {
+  async (_, { getState, rejectWithValue, dispatch }) => {
     const { idToken } = getState().auth;
     try {
       const data = await getCurUserApi(idToken);
       return data;
     } catch (error) {
+      setTimeout(() => {
+        dispatch(logOut());
+      }, 0);
       return rejectWithValue(error.message);
     }
   },

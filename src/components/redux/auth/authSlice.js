@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUser, registerUser } from './authOperation';
+import { getCurUser, loginUser, registerUser } from './authOperation';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -41,6 +41,22 @@ const authSlice = createSlice({
         };
       })
       .addCase(loginUser.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(getCurUser.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(getCurUser.fulfilled, (state, { payload }) => {
+        return {
+          ...state,
+          isAuth: true,
+          isLoading: false,
+          error: null,
+          ...payload,
+        };
+      })
+      .addCase(getCurUser.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });

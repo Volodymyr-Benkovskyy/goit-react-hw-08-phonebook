@@ -6,12 +6,20 @@ import HomePage from "components/pages/HomePage";
 import LoginPage from "components/pages/LoginPage";
 import RegisterPage from "components/pages/RegisterPage";
 import ContactsBookPage from "components/pages/ContactsBookPage";
-//import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getCurUser } from "components/redux/auth/authOperation";
 //import { selectIsAuth } from "components/redux/auth/authselector";
 
 
 const App = () => {
  // const isAuth = useSelector(selectIsAuth);
+ 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCurUser())
+  },[dispatch])
 
   return (
     <>

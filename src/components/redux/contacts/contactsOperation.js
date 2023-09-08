@@ -1,5 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { addContactsApi, getContactApi, removeContactApi } from './firebaseApi';
+import {
+  addContactsApi,
+  getContactApi,
+  removeContactApi,
+} from './firebaseContactsApi';
 
 export const addContacts = createAsyncThunk(
   'contacts/add',

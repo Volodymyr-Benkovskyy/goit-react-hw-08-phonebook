@@ -56,6 +56,50 @@ export const loginUserApi = userForm => {
     }));
 };
 
+// https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=[API_KEY]
+
+// запит який повертає localId, email
+
+export const getCurUserApi = idToken => {
+  setBaseUrl(baseUrl.AUTH);
+  return axios
+    .post('accounts:lookup', { idToken }, { params: { key: API_KEY } })
+    .then(respons => {
+      const { localId, email } = respons.data.users[0];
+      return { localId, email };
+    });
+};
+
+/* {
+  "users": [
+    {
+      "localId": "ZY1rJK0...",
+      "email": "user@example.com",
+      "emailVerified": false,
+      "displayName": "John Doe",
+      "providerUserInfo": [
+        {
+          "providerId": "password",
+          "displayName": "John Doe",
+          "photoUrl": "http://localhost:8080/img1234567890/photo.png",
+          "federatedId": "user@example.com",
+          "email": "user@example.com",
+          "rawId": "user@example.com",
+          "screenName": "user@example.com"
+        }
+      ],
+      "photoUrl": "https://lh5.googleusercontent.com/.../photo.jpg",
+      "passwordHash": "...",
+      "passwordUpdatedAt": 1.484124177E12,
+      "validSince": "1484124177",
+      "disabled": false,
+      "lastLoginAt": "1484628946000",
+      "createdAt": "1484124142000",
+      "customAuth": false
+    }
+  ]
+ */
+
 /* {
   "localId": "ZY1rJK0eYLg...",
   "email": "[user@example.com]",

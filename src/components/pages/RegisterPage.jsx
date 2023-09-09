@@ -1,12 +1,27 @@
-import RegisterForm from "components/RegistreForm/RegisterForm";
+
+
+import AuthForm from "components/AuthForm/AuthForm";
+import { registerUser } from "components/redux/auth/authOperation";
+import { useDispatch } from "react-redux";
 
 const RegisterPage = () => {
-    return (
-        <>  
-            <h1 style={{ textAlign: 'center' }}>Registration form</h1>
-               <RegisterForm/>
-        </>
-    )
-}
+  const dispatch = useDispatch();
+
+  const handleRegisterUser = (data) => {
+    dispatch(registerUser(data));
+  };
+
+  return (
+    <>
+      <h1 style={{ textAlign: 'center' }}>Register Page</h1>
+      <AuthForm
+        onSubmit={handleRegisterUser}
+        submitTitle="Register"
+        redirectTo={"/login"}
+        linkTitle="Login"
+      />
+    </>
+  );
+};
 
 export default RegisterPage;

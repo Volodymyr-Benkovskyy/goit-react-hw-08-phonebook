@@ -1,5 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getCurUserApi, loginUserApi, registerUserApi } from './firebaseUseApi';
+import {
+  getCurUserApi,
+  loginUserApi,
+  registerUserApi,
+} from '../firebaseUseApi';
 import { logOut } from './authSlice';
 
 export const registerUser = createAsyncThunk(

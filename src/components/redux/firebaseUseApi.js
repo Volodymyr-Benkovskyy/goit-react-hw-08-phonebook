@@ -2,14 +2,42 @@ import axios from 'axios';
 
 const API_KEY = 'AIzaSyDQsDfRLcaeNcWOv1sGPVJy21j-T36_BsQ';
 
-axios.defaults.baseURL = 'https://volodymyr-1-default-rtdb.firebaseio.com';
+//axios.defaults.baseURL = 'https://volodymyr-1-default-rtdb.firebaseio.com';
+//"https://<DATABASE_NAME>.firebaseio.com/users/ada/name.json?auth=<ID_TOKEN>" для генерації токена
 
 const baseUrl = {
-  DB: 'https://volodymyr-1-default-rtdb.firebaseio.com',
+  DB: 'https://bookcontacts-47551-default-rtdb.firebaseio.com',
   AUTH: 'https://identitytoolkit.googleapis.com/v1',
 };
 
+/* ======================================================== */
 const setBaseUrl = url => (axios.defaults.baseURL = url);
+
+export const addContactsApi = ({ items, localId, idToken }) => {
+  setBaseUrl(baseUrl.DB);
+  return axios
+    .post(`/users/${localId}/contacts.json`, items, {
+      params: { auth: idToken },
+    })
+    .then(res => {
+      const { data } = res;
+      return { ...items, id: data.name };
+    });
+};
+
+export const getContactApi = () => {
+  return axios
+    .get('/contacts.json')
+    .then(({ data }) =>
+      Object.entries(data).map(([id, dataForm]) => ({ id, ...dataForm }))
+    );
+};
+
+export const removeContactApi = id => {
+  return axios.delete(`/contacts/${id}.json`).then(res => res.data);
+};
+
+/* ========================================= */
 
 export const registerUserApi = userForm => {
   setBaseUrl(baseUrl.AUTH);
@@ -33,6 +61,7 @@ export const registerUserApi = userForm => {
       localId,
     }));
 };
+
 export const loginUserApi = userForm => {
   setBaseUrl(baseUrl.AUTH);
   return axios

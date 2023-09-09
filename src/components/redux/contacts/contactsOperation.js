@@ -3,16 +3,17 @@ import {
   addContactsApi,
   getContactApi,
   removeContactApi,
-} from './firebaseContactsApi';
+} from '../firebaseUseApi';
 
 export const addContacts = createAsyncThunk(
   'contacts/add',
-  async (items, thunkApi) => {
+  async (items, { rejectWithValue, getState }) => {
+    const { localId, idToken } = getState().auth;
     try {
-      const contacts = await addContactsApi(items);
+      const contacts = await addContactsApi({ items, localId, idToken });
       return contacts;
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );

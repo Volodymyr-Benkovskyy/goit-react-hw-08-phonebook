@@ -6,7 +6,7 @@ import HomePage from "components/pages/HomePage";
 import LoginPage from "components/pages/LoginPage";
 import RegisterPage from "components/pages/RegisterPage";
 import ContactsBookPage from "components/pages/ContactsBookPage";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch,  } from "react-redux";
 import { useEffect } from "react";
 import { getCurUser } from "components/redux/auth/authOperation";
 //import { selectIsAuth } from "components/redux/auth/authselector";
@@ -15,24 +15,24 @@ import { getCurUser } from "components/redux/auth/authOperation";
 const App = () => {
  // const isAuth = useSelector(selectIsAuth);
  
-  const dispatch = useDispatch();
+const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCurUser())
-  },[dispatch])
-
+  }, [dispatch]);
+ 
   return (
     <>
     
-   <Routes>  
-    <Route path="/" element={<MainLayout />}>
+ <Routes>
+  <Route path="/" element={<MainLayout />}>
     <Route index element={<HomePage />} />
-    <Route path="/contacts" element={<ContactsBookPage/> }/>
+    <Route path="/contacts" element={<ContactsBookPage />}/>
     <Route path="/register" element={<RegisterPage />} />
     <Route path="/login" element={<LoginPage />} />
-    </Route>
-   <Route path="*" element={<Navigate to="/login" />} /> 
- </Routes>
+  </Route>
+  <Route path="*" element={<Navigate to="/login" />} /> 
+</Routes>
     
     </>
   );

@@ -1,8 +1,9 @@
 
 import { useState } from 'react';
 import css from './AuthForm.module.css';
+import { Link } from 'react-router-dom';
 
-const AuthForm = ({onSubmit,submitTitle}) => {
+const AuthForm = ({onSubmit,submitTitle,redirectTo,linkTitle}) => {
 
     const [form, setForm] = useState({
      email: "",
@@ -42,8 +43,15 @@ const AuthForm = ({onSubmit,submitTitle}) => {
           value={form.password}
           onChange={handleChange}
         />
-      </label>
-      <button type="submit">{submitTitle}</button>
+         </label>
+         
+         <div className={css.buttonlink}> 
+         <button type="submit">{submitTitle}</button>
+        <Link to={redirectTo}>
+           <button >{linkTitle}</button>
+       </Link>
+         </div>
+     
     </form>
   );
 };

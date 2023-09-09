@@ -25,11 +25,14 @@ export const addContactsApi = ({ items, localId, idToken }) => {
     });
 };
 
-export const getContactApi = () => {
+export const getContactApi = ({ localId, idToken }) => {
+  setBaseUrl(baseUrl.DB);
   return axios
-    .get('/contacts.json')
+    .get(`/users/${localId}/contacts.json`, { params: { auth: idToken } })
     .then(({ data }) =>
-      Object.entries(data).map(([id, dataForm]) => ({ id, ...dataForm }))
+      data
+        ? Object.entries(data).map(([id, dataForm]) => ({ id, ...dataForm }))
+        : []
     );
 };
 
@@ -129,15 +132,6 @@ export const getCurUserApi = idToken => {
   ]
  */
 
-/* {
-  "localId": "ZY1rJK0eYLg...",
-  "email": "[user@example.com]",
-  "displayName": "",
-  "idToken": "[ID_TOKEN]",
-  "registered": true,
-  "refreshToken": "[REFRESH_TOKEN]",
-  "expiresIn": "3600"
-} */
 //'{"email":"[user@example.com]","password":"[PASSWORD]","returnSecureToken":true}'
 
 // https://volodymyr-1-default-rtdb.firebaseio.com
@@ -145,11 +139,3 @@ export const getCurUserApi = idToken => {
 //https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]
 
 //Sample response  ==> те що повертає бекент
-
-// {
-//   "idToken": "[ID_TOKEN]",
-//   "email": "[user@example.com]",
-//   "refreshToken": "[REFRESH_TOKEN]",
-//   "expiresIn": "3600",
-//   "localId": "tRcfmLH7..."
-// }

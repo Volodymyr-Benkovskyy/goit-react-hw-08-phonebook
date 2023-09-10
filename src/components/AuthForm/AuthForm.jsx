@@ -60,4 +60,6 @@ const AuthForm = ({onSubmit,submitTitle,redirectTo,linkTitle}) => {
 
 export default AuthForm;
 
-// Component AuthForm ,  function loginUserApi , operetion loginUser 
+// Component AuthForm ,  function loginUserApi , operetion loginUser
+
+ // created  link logout , Route  PrivateRoute , PublicRoute 

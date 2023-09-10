@@ -1,16 +1,17 @@
 import axios from 'axios';
 
-const API_KEY = 'AIzaSyDQsDfRLcaeNcWOv1sGPVJy21j-T36_BsQ';
+const API_KEY = 'AIzaSyDQsDfRLcaeNcWOv1sGPVJy21j - T36_BsQ';
 
 //axios.defaults.baseURL = 'https://volodymyr-1-default-rtdb.firebaseio.com';
 //"https://<DATABASE_NAME>.firebaseio.com/users/ada/name.json?auth=<ID_TOKEN>" для генерації токена
 
 const baseUrl = {
-  DB: 'https://bookcontacts-47551-default-rtdb.firebaseio.com',
+  DB: 'https://volodymyr-1-default-rtdb.firebaseio.com',
   AUTH: 'https://identitytoolkit.googleapis.com/v1',
 };
 
 /* ======================================================== */
+
 const setBaseUrl = url => (axios.defaults.baseURL = url);
 
 export const addContactsApi = ({ items, localId, idToken }) => {
@@ -36,8 +37,13 @@ export const getContactApi = ({ localId, idToken }) => {
     );
 };
 
-export const removeContactApi = id => {
-  return axios.delete(`/contacts/${id}.json`).then(res => res.data);
+export const removeContactApi = ({ id, localId, idToken }) => {
+  setBaseUrl(baseUrl.DB);
+  return axios
+    .delete(`/users/${localId}/contacts/${id}.json`, {
+      params: { auth: idToken },
+    })
+    .then(res => res.data);
 };
 
 /* ========================================= */

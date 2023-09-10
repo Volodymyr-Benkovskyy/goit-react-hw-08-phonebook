@@ -1,13 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { addContacts, getContacts, removeContacts } from './contactsOperation';
+import { logOut } from '../auth/authSlice';
+
+const initialState = {
+  items: [],
+  isLoading: false,
+  error: null,
+};
 
 const ContactsSlice = createSlice({
   name: 'contacts',
-  initialState: {
-    items: [],
-    isLoading: false,
-    error: null,
-  },
+  initialState,
 
   extraReducers: builder => {
     builder
@@ -19,6 +22,9 @@ const ContactsSlice = createSlice({
       })
       .addCase(removeContacts.fulfilled, (state, { payload }) => {
         state.items = state.items.filter(el => el.id !== payload);
+      })
+      .addCase(logOut, () => {
+        return { ...initialState };
       })
 
       .addMatcher(

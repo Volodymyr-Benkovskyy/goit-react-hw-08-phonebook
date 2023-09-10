@@ -16,12 +16,14 @@ const ContactsBookPage = () => {
 
   const isLoading = useSelector(state => state.contacts.isLoading);
   const error = useSelector(state => state.contacts.error);
-  const isContactsExist = useSelector(selectIscontactsExist)
+
+    const isContactsExist = useSelector(selectIscontactsExist)
  const isUserExist = useSelector(state => state.auth.localId)
     
   useEffect(() => {
     !isContactsExist && isUserExist && dispatch(getContacts())
   }, [dispatch, isContactsExist,isUserExist ]);
+
 
     
   return (

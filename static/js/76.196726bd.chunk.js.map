@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/76.196726bd.chunk.js","mappings":"wJAIA,UAJiB,WACf,OAAO,eAAKA,MAAO,CAAEC,UAAW,UAAzB,2CACR,C","sources":["components/pages/HomePage.jsx"],"sourcesContent":["const HomePage = () => {\n  return <h1  style={{ textAlign: 'center' }}>Welcome to our amazing site!!!</h1>;\n};\n\nexport default HomePage;\n"],"names":["style","textAlign"],"sourceRoot":""}

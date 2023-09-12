@@ -1,9 +1,9 @@
 
 import { useState } from 'react';
 import css from './AuthForm.module.css';
-import { Link } from 'react-router-dom';
 
-const AuthForm = ({onSubmit,submitTitle,redirectTo,linkTitle}) => {
+
+const AuthForm = ({onSubmit,submitTitle}) => {
 
     const [form, setForm] = useState({
      email: "",
@@ -18,9 +18,7 @@ const AuthForm = ({onSubmit,submitTitle,redirectTo,linkTitle}) => {
 
    const handleSubmit = (event) => {
      event.preventDefault();
-     console.log("fech==>", form);
-     onSubmit(form)
-    
+     onSubmit(form);
     };
     
      return (
@@ -45,13 +43,7 @@ const AuthForm = ({onSubmit,submitTitle,redirectTo,linkTitle}) => {
         />
          </label>
          
-         <div className={css.buttonlink}> 
          <button type="submit">{submitTitle}</button>
-        <Link to={redirectTo}>
-           <button >{linkTitle}</button>
-       </Link>
-         </div>
-     
     </form>
   );
 };

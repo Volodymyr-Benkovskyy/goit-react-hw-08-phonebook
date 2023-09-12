@@ -19,7 +19,7 @@ const AuthpersistConfig = {
   key: 'root',
   version: 1,
   storage,
-  whiteList: ['idToken'],
+  whiteList: ['idToken', 'refreshToken'],
 };
 
 const persistAuthedReducer = persistReducer(AuthpersistConfig, authReducer);

@@ -1,16 +1,15 @@
 //import ContactsBookPage from "components/pages/ContactsBookPage";
-import {  Route, Routes , Navigate} from "react-router-dom";
-
+import React, { useEffect, lazy } from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
 import MainLayout from "components/MainLayout/MainLayout";
-import HomePage from "components/pages/HomePage";
-import LoginPage from "components/pages/LoginPage";
-import RegisterPage from "components/pages/RegisterPage";
-import ContactsBookPage from "components/pages/ContactsBookPage";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { getCurUser } from "components/redux/auth/authOperation";
 import { selectIsAuth } from "components/redux/auth/authselector";
 
+const HomePage = lazy(() => import("../pages/HomePage"));
+const ContactsBookPage= lazy(() => import("../pages/ContactsBookPage"));
+const RegisterPage = lazy(() => import("../pages/RegisterPage"));
+const LoginPage = lazy(() => import("../pages/LoginPage"));
 
 const PrivateRoute = ({component, redirectTo = "/login"}) => {
   const isAuth = useSelector(selectIsAuth)
@@ -19,7 +18,6 @@ const PrivateRoute = ({component, redirectTo = "/login"}) => {
 
 const PublicRoute = ({ component, redirectTo = "/" }) => {
   const isAuth = useSelector(selectIsAuth);
-
   return !isAuth ? component : <Navigate to={redirectTo} />;
 };
 

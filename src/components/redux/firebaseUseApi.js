@@ -8,6 +8,7 @@ const API_KEY = 'AIzaSyDQsDfRLcaeNcWOv1sGPVJy21j - T36_BsQ';
 const baseUrl = {
   DB: 'https://volodymyr-1-default-rtdb.firebaseio.com',
   AUTH: 'https://identitytoolkit.googleapis.com/v1',
+  REFRECH: 'https://identitytoolkit.googleapis.com/v1',
 };
 
 /* ======================================================== */
@@ -48,13 +49,13 @@ export const removeContactApi = ({ id, localId, idToken }) => {
 
 /* ========================================= */
 
-export const registerUserApi = userForm => {
+export const registerUserApi = usersForm => {
   setBaseUrl(baseUrl.AUTH);
   return axios
     .post(
       '/accounts:signUp',
       {
-        ...userForm,
+        ...usersForm,
         returnSecureToken: true,
       },
       {
@@ -71,13 +72,13 @@ export const registerUserApi = userForm => {
     }));
 };
 
-export const loginUserApi = userForm => {
+export const loginUserApi = usersForm => {
   setBaseUrl(baseUrl.AUTH);
   return axios
     .post(
       '/accounts:signInWithPassword',
       {
-        ...userForm,
+        ...usersForm,
         returnSecureToken: true,
       },
       {
@@ -94,19 +95,48 @@ export const loginUserApi = userForm => {
     }));
 };
 
-// https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=[API_KEY]
-
 // запит який повертає localId, email
-
+// https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=[API_KEY]
 export const getCurUserApi = idToken => {
   setBaseUrl(baseUrl.AUTH);
   return axios
-    .post('accounts:lookup', { idToken }, { params: { key: API_KEY } })
+    .post('/accounts:lookup', { idToken }, { params: { key: API_KEY } })
     .then(respons => {
       const { localId, email } = respons.data.users[0];
       return { localId, email };
     });
 };
+
+// https://securetoken.googleapis.com/v1/token?key=[API_KEY] рефреш токен
+export const refreshTokenApi = refreshToken => {
+  setBaseUrl(baseUrl.REFRECH);
+  return axios
+    .post(
+      '/token',
+      {
+        grant_type: 'refresh_token',
+        refresh_token: refreshToken,
+      },
+      {
+        params: {
+          key: API_KEY,
+        },
+      }
+    )
+    .then(({ data: { refresh_token: refreshToken, id_token: idToken } }) => ({
+      refreshToken,
+      idToken,
+    }));
+};
+
+/* {
+  "expires_in": "3600",
+  "token_type": "Bearer",
+  "refresh_token": "[REFRESH_TOKEN]",
+  "id_token": "[ID_TOKEN]",
+  "user_id": "tRcfmLH7o2XrNELi...",
+  "project_id": "1234567890"
+} */
 
 /* {
   "users": [

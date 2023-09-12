@@ -20,9 +20,12 @@ const AuthNavList = () => {
       </NavLink>
     </>
   ) : (
-    <NavLink className={css.link} onClick={() => dispatch(logOut())}>
-      Logout
-    </NavLink>
+          <NavLink className={css.link}
+             onClick={() => dispatch(logOut())}
+          >
+                Logout
+        
+         </NavLink>
   )}
 </nav>
     

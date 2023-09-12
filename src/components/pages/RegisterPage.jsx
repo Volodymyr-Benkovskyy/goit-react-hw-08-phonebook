@@ -17,8 +17,7 @@ const RegisterPage = () => {
       <AuthForm
         onSubmit={handleRegisterUser}
         submitTitle="Register"
-        redirectTo={"/login"}
-        linkTitle="Login"
+    
       />
     </>
   );

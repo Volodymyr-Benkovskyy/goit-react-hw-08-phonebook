@@ -11,7 +11,7 @@ export const selectorFilteredContacts = createSelector(
   }
 );
 
-export const selectIscontactsExist = state =>
+export const selectIsContactsExist = state =>
   Boolean(getStoreContacts(state).length);
 
 //const isContactsExist = useSelector((state) => Boolean(state.contacts.length));

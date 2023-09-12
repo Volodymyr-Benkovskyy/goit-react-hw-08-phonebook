@@ -4,27 +4,39 @@ import ContactForm from "components/ContactForm/ContactForm";
 import ContactList from "components/ContactList/ContactList";
 import Filter from "components/Filter/Filter";
 import { useEffect } from "react";
-import { getContacts} from "components/redux/contacts/contactsOperation";
+import { getContacts, removeContacts} from "components/redux/contacts/contactsOperation";
 import {  useDispatch, useSelector } from "react-redux"; 
-import { selectIscontactsExist } from "components/redux/contacts/selectors";
+import { selectIsContactsExist } from "components/redux/contacts/selectors";
 
 
 
 const ContactsBookPage = () => {
-
-    const dispatch = useDispatch();
-
+  const dispatch = useDispatch();
+  
   const isLoading = useSelector(state => state.contacts.isLoading);
   const error = useSelector(state => state.contacts.error);
 
-    const isContactsExist = useSelector(selectIscontactsExist)
- const isUserExist = useSelector(state => state.auth.localId)
+    const isContactsExist = useSelector(selectIsContactsExist)
+    const isUserExist = useSelector(state => state.auth.localId)
     
+  
+/*  useEffect(() => {
+ !isContactsExist && isUserExist && 
+    dispatch(getContacts());
+  
+}, [dispatch, isUserExist, isContactsExist]); */
   useEffect(() => {
-    !isContactsExist && isUserExist && dispatch(getContacts())
-  }, [dispatch, isContactsExist,isUserExist ]);
+  if (isUserExist) {
+    // Запускаємо функцію видалення контактів тут, якщо користувач існує.
+    if (!isContactsExist) {
+      dispatch(getContacts());
+    } else {
+      dispatch(removeContacts()); // Припустимо, що ця функція видаляє контакти.
+    }
+  }
+}, [dispatch, isUserExist, isContactsExist]);
 
-
+ 
     
   return (
       

@@ -40,7 +40,7 @@ export const removeContacts = createAsyncThunk(
     const { localId, idToken } = getState().auth;
     try {
       await removeContactApi({ id, localId, idToken });
-      return id;
+      return dispatch(getContacts());
     } catch (error) {
       dispatch(errorHandler({ error, cb: () => removeContacts(id) }));
       return rejectWithValue(error.message);

@@ -97,6 +97,7 @@ export const loginUserApi = usersForm => {
 
 // запит який повертає localId, email
 // https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=[API_KEY]
+
 export const getCurUserApi = idToken => {
   setBaseUrl(baseUrl.AUTH);
   return axios
